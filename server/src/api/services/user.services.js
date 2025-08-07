@@ -1,4 +1,5 @@
-import { user_type } from "@prisma/client";
+// src/api/services/user.services.js
+
 import { prisma } from "../../lib/prismaInstance.js";
 
 // Create Dealer and Distribtor User
@@ -16,8 +17,10 @@ export const createBusiness = async (
     where: email,
   });
 
+  // If dealer exists throw error
   if (existingDealer) throw new Error("User already exists");
 
+  // Create dealer
   const dealer = await prisma.user.create({
     data: {
       mobile,
@@ -40,8 +43,10 @@ export const createEmployee = async (mobile, email, userType, dealerId) => {
     where: email,
   });
 
+  // If employee exists throw error
   if (existingEmployee) throw new Error("User already exists");
 
+  // Create Employee
   const employee = await prisma.user.create({
     data: {
       mobile,
