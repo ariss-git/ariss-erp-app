@@ -21,7 +21,7 @@ enum user_type {
 }
 
 model user {
-  id               String    @id @default(uuid())
+  user_id          String    @id @default(uuid())
   mobile           Int       @unique
   email            String    @unique
   business         String?
@@ -30,4 +30,8 @@ model user {
   shipping_address Json?
   profile_pic      String?
   user_type        user_type
+
+  dealer_id   String? // Foreign key to another user
+  dealer      user?   @relation("DealerUsers", fields: [dealer_id], references: [user_id])
+  teamMembers user[]  @relation("DealerUsers") // Inverse side for the dealer
 }

@@ -1,7 +1,9 @@
 import app from "./server.js";
 
+const PORT = process.env.PORT || 8000;
+
 app.get("/", (_req, res) => {
   res.json({ server: true });
 });
 
-app.listen(5000, () => console.log("Server running on PORT: 5000"));
+app.listen(PORT, () => console.log("Server running on PORT:", PORT));
