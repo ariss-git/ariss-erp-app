@@ -22,13 +22,14 @@ enum user_type {
 
 model user {
   user_id          String    @id @default(uuid())
-  mobile           Int       @unique
+  mobile           String    @unique
   email            String    @unique
   business         String?
   gstin            String?
   billing_address  Json?
   shipping_address Json?
   profile_pic      String?
+  isApproved       Boolean   @default(false)
   user_type        user_type
 
   dealer_id   String? // Foreign key to another user

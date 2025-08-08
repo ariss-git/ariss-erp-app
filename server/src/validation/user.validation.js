@@ -3,7 +3,7 @@
 import { z } from "zod";
 
 export const createBusinessSchema = z.object({
-  mobile: z.number({
+  mobile: z.string({
     required_error: "Mobile number is required",
     invalid_type_error: "Mobile must be a number",
   }),
