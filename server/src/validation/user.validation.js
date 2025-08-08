@@ -5,9 +5,9 @@ import { z } from "zod";
 export const createBusinessSchema = z.object({
   mobile: z.string({
     required_error: "Mobile number is required",
-    invalid_type_error: "Mobile must be a number",
   }),
-  email: z.email("Invalid email"),
+  email: z.string("Invalid email"),
+  name: z.string("Invalid name"),
   business: z.string({
     required_error: "Business name is required",
   }),
@@ -26,14 +26,11 @@ export const createBusinessSchema = z.object({
 });
 
 export const createEmployeeSchema = z.object({
-  mobile: z.number({
+  mobile: z.string({
     required_error: "Mobile number is required",
-    invalid_type_error: "Mobile must be a number",
   }),
-  email: z.email("Invalid email"),
-  business: z.string({
-    required_error: "Business name is required",
-  }),
+  email: z.string("Invalid email"),
+  name: z.string("Invalid name"),
   userType: z.enum(["DEALER", "DISTRIBUTOR", "TECHNICIAN", "BACKOFFICE"], {
     required_error: "User type is required",
   }),

@@ -6,6 +6,7 @@ import { prisma } from "../../lib/prismaInstance.js";
 export const createBusiness = async (
   mobile,
   email,
+  name,
   business,
   gstin,
   billingAddress,
@@ -14,7 +15,7 @@ export const createBusiness = async (
 ) => {
   // Check if dealer exists
   const existingDealer = await prisma.user.findUnique({
-    where: email,
+    where: { email },
   });
 
   // If dealer exists throw error
@@ -25,6 +26,7 @@ export const createBusiness = async (
     data: {
       mobile,
       email,
+      name,
       business,
       gstin,
       billing_address: billingAddress,
@@ -37,10 +39,16 @@ export const createBusiness = async (
 };
 
 // Create Technician and Backoffice User
-export const createEmployee = async (mobile, email, userType, dealerId) => {
+export const createEmployee = async (
+  mobile,
+  email,
+  name,
+  userType,
+  dealerId
+) => {
   // Check if employee exists
   const existingEmployee = await prisma.user.findUnique({
-    where: email,
+    where: { email },
   });
 
   // If employee exists throw error
@@ -51,6 +59,7 @@ export const createEmployee = async (mobile, email, userType, dealerId) => {
     data: {
       mobile,
       email,
+      name,
       user_type: userType,
       dealer_id: dealerId,
     },

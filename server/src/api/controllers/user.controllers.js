@@ -9,6 +9,7 @@ export const createBusinessController = async (req, res) => {
     const dealer = await userServices.createBusiness(
       validatedUser.mobile,
       validatedUser.email,
+      validatedUser.name,
       validatedUser.business,
       validatedUser.gstin,
       validatedUser.billingAddress,
@@ -41,6 +42,7 @@ export const createEmployeeController = async (req, res) => {
     const employee = await userServices.createEmployee(
       validatedUser.mobile,
       validatedUser.email,
+      validatedUser.name,
       validatedUser.userType,
       validatedUser.dealerId
     );
