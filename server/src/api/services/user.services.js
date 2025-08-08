@@ -1,6 +1,7 @@
 // src/api/services/user.services.js
 
 import { prisma } from "../../lib/prismaInstance.js";
+import { user_type } from "@prisma/client";
 
 // Create Dealer and Distribtor User
 export const createBusiness = async (
@@ -66,4 +67,55 @@ export const createEmployee = async (
   });
 
   return employee;
+};
+
+// Fetch everyone
+export const fetchAllUsers = async () => {
+  return await prisma.user.findMany({
+    include: {
+      dealer: true,
+    },
+  });
+};
+
+// Fetch all approved Distributors
+export const fetchAllDistributors = async () => {
+  return await prisma.user.findMany({
+    where: {
+      user_type: user_type.DISTRIBUTOR,
+    },
+  });
+};
+
+// Fetch all approved Dealers
+export const fetchAllDealers = async () => {
+  return await prisma.user.findMany({
+    where: {
+      user_type: user_type.DEALER,
+    },
+  });
+};
+
+// Fetch all approved Technicians
+export const fetchAllTechnicians = async () => {
+  return await prisma.user.findMany({
+    where: {
+      user_type: user_type.TECHNICIAN,
+    },
+    include: {
+      dealer: true,
+    },
+  });
+};
+
+// Fetch all approved Backoffice
+export const fetchAllBackoffice = async () => {
+  return await prisma.user.findMany({
+    where: {
+      user_type: user_type.BACKOFFICE,
+    },
+    include: {
+      dealer: true,
+    },
+  });
 };

@@ -64,3 +64,53 @@ export const createEmployeeController = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
+// Fetch everyone controller
+export const fetchAllUsersController = async (_req, res) => {
+  try {
+    const users = await userServices.fetchAllUsers();
+    res.status(200).json({ success: true, total: users.length, data: users });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+// Fetch all Distributors approved controller
+export const fetchAllDistributorsController = async (_req, res) => {
+  try {
+    const users = await userServices.fetchAllDistributors();
+    res.status(200).json({ success: true, total: users.length, data: users });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+// Fetch all Dealers approved controller
+export const fetchAllDealersController = async (_req, res) => {
+  try {
+    const users = await userServices.fetchAllDealers();
+    res.status(200).json({ success: true, total: users.length, data: users });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+// Fetch all Technicians approved controller
+export const fetchAllTechniciansController = async (_req, res) => {
+  try {
+    const users = await userServices.fetchAllTechnicians();
+    res.status(200).json({ success: true, total: users.length, data: users });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+// Fetch all Backoffice approved controller
+export const fetchAllBackofficeController = async (_req, res) => {
+  try {
+    const users = await userServices.fetchAllBackoffice();
+    res.status(200).json({ success: true, total: users.length, data: users });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
